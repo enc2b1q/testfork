@@ -36,21 +36,21 @@ jobs:
 			# Построение образа и отправка его в Container Registry
       - name: Build, tag, and push image to Yandex Cloud Container Registry
         env:
-					# Здесь указываем идентификатор регистра (о нём позднее)
+	  # Здесь указываем идентификатор регистра (о нём позднее)
           CR_REGISTRY: crp6tj17vgv911n19pcn
-					# Здесь указываем название репозитория (впрочем оно далее не используется)
+	  # Здесь указываем название репозитория (впрочем оно далее не используется)
           CR_REPOSITORY: game.practicum.yandex.ru
-					# Здесь ничего не меняем (формирует уникальное название для образа)
+	  # Здесь ничего не меняем (формирует уникальное название для образа)
           IMAGE_TAG: ${{ github.sha }}
-					# Далее указываем все прочие нужные нам перееменные среды
+	  # Далее указываем все прочие нужные нам перееменные среды
           CLIENT_PORT: 3000
           SERVER_PORT: 3001
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: postgres
           POSTGRES_PORT: 5432
-				# Всё описание выше было лишь подготовкой
-				# Тем не менее, оставшиеся шаги более не должны вызывать вопросы
+	# Всё описание выше было лишь подготовкой
+	# Тем не менее, оставшиеся шаги более не должны вызывать вопросы
         run: |
           docker compose build
           docker tag practicum-client:latest cr.yandex/$CR_REGISTRY/practicum-client:latest
